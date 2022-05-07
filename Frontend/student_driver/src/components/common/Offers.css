@@ -1,0 +1,23 @@
+.btn-circle.btn-lg {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    color: #82CD67;
+    background-color: #495563;
+}
+.btn-circle.btn-lg:hover {
+    color: #fff;
+    background-color: #82CD67;
+}
+
+td {
+    text-align: center;
+}
+
+th {
+    text-align: center;
+}

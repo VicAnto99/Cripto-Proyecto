@@ -9,7 +9,12 @@ function Login() {
     return (
     <div className='login'>
         <div className='text-center'>
-            <button type='button' className='btn btn-primary mt-5' onClick={() => loginWithRedirect()}>Log In</button>
+            <img src='studentdriver-logo.jpeg' className='img'></img>
+            <h2 className='txt'>Clic on login to enjoy the benefits of StudentDriver</h2>
+            <h2>and share rides with people from Tec de Monterrey</h2>
+        </div>
+        <div>
+            <button type='button' className='btn btn-primary boton' onClick={() => loginWithRedirect()}>Log In</button>
         </div>
     </div>
   )
