@@ -19,7 +19,7 @@ connection.once('open', function() {
 })
 
 // Get all the offers
-offersRoutes.route('/').get(function(req, res) {
+offersRoutes.route('/get_offers').get(function(req, res) {
     Offer.find(function(err, offers) {
         if (err) {
             console.log(err);
@@ -30,7 +30,7 @@ offersRoutes.route('/').get(function(req, res) {
 });
 
 // Get a single offer
-offersRoutes.route('/:id').get(function(req, res) {
+offersRoutes.route('/offers/:id').get(function(req, res) {
     let id = req.params.id;
     Offer.findById(id, function(err, offer) {
         res.json(offer);
@@ -38,7 +38,7 @@ offersRoutes.route('/:id').get(function(req, res) {
 });
 
 // Add a new offer
-offersRoutes.route('/add').post(function(req, res) {
+offersRoutes.route('/add_offer').post(function(req, res) {
     let offer = new Offer(req.body);
     offer.save()
         .then(offer => {
@@ -50,7 +50,7 @@ offersRoutes.route('/add').post(function(req, res) {
 });
 
 // Update an offer
-offersRoutes.route('/update/:id').post(function(req, res) {
+offersRoutes.route('/offer/update/:id').post(function(req, res) {
     Offer.findById(req.params.id, function(err, offer) {
         if (!offer)
             res.status(404).send('Data is not found');
@@ -72,7 +72,7 @@ offersRoutes.route('/update/:id').post(function(req, res) {
 });
 
 // Delete an offer
-offersRoutes.route('/delete/:id').get(function(req, res) {
+offersRoutes.route('/offer/delete/:id').get(function(req, res) {
     Offer.findByIdAndRemove({_id: req.params.id}, function(err, offer) {
         if (err)
             res.json(err);

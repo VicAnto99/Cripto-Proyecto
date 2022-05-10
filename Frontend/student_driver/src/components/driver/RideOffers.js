@@ -51,6 +51,8 @@ function RideOffers() {
                 </div>
             </div>
         </div>
+        <button type="button" className="btn btn-success">Offer</button>
+
     </div>
    )
  }

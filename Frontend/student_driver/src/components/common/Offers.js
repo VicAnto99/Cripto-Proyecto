@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Offers.css';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
 
 
 function Offers() {
+
+  const URL = "http://localhost:4000/student_drive/get_offers";
+  let navigate = useNavigate(); 
+  const getData = async () => {
+    const response = axios.get(URL);
+    return response;
+  } 
+
+  const [list, setList] = useState([]);
+
+  useEffect(() =>{
+    getData("/").then((response) =>{
+      setList(response.data);
+    })
+  }, [])
     
   return (
     <div className='offers'>
@@ -16,57 +34,32 @@ function Offers() {
               <tr>
                 <th scope="col">User</th>
                 <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Positions</th>
                 <th scope="col">Place</th>
                 <th scope="col">Offer</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">user_1</th>
-                <td>Monday 25 May 19:00</td>
-                <td>Xochimilco</td>
-                <td>
-                    <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">user_2</th>
-                <td>Monday 25 May 19:00</td>
-                <td>NezaYork</td>
-                <td>
-                <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">user_3</th>
-                <td>Monday 25 May 19:00</td>
-                <td>Iztapalapa</td>
-                <td>
-                <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">user_4</th>
-                <td>Monday 25 May 19:00</td>
-                <td>Tlalpan</td>
-                <td>
-                <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">user_5</th>
-                <td>Monday 25 May 19:00</td>
-                <td>Seattle</td>
-                <td>
-                <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
-                </td>
-              </tr>
+                {/* Fetch all the offers into the table */}
+                {list.map((offer, index) => {
+                  return (
+                    <tr key={index}>
+                      <th>{offer._id.substring(0,9)}</th>
+                      <td>{offer.offers_date}</td>
+                      <td>{offer.offers_from}{'-'}{offer.offers_to}</td>
+                      <td>{offer.offers_positions}</td>
+                      <td>{offer.offers_comments}</td>
+                      <td>
+                        <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+                      </td>
+                    </tr>
+                  )
+                })}
             </tbody>
-          </table>
-            
+          </table>  
         </div>
     </div>
-  )
-}
+)}
 
 export default Offers
