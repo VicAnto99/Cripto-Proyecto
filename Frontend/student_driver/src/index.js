@@ -7,6 +7,7 @@ import NewBid from './components/student/NewBid';
 import RideOffers from './components/driver/RideOffers'
 import { Auth0Provider } from "@auth0/auth0-react";
 import Navbar from './components/common/Navbar/Navbar';
+import Contact from './components/common/Contact'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,8 +23,7 @@ root.render(
       <Route path='/' element={<App />} />
       <Route path='/newBid' element={<><Navbar /><NewBid /></>}/>
       <Route path='/rideOffers' element={<><Navbar /><RideOffers /></>}/>
-      {/* <Route path='/login' element={<Login />}/>
-      <Route path='/signup' element={<SignUp />}/> */}
+      <Route path='/contact'element={<><Navbar /><Contact /></>}/>
     </Routes>
   </Auth0Provider>
   </Router>
