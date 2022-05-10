@@ -21,6 +21,10 @@ function Offers() {
       setList(response.data);
     })
   }, [])
+
+  const routeChange = () =>{ 
+    navigate('/newBid');
+  }
     
   return (
     <div className='offers'>
@@ -51,7 +55,7 @@ function Offers() {
                       <td>{offer.offers_positions}</td>
                       <td>{offer.offers_comments}</td>
                       <td>
-                        <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+                        <button type="button" class="btn btn-info btn-circle btn-lg" onClick={routeChange}><i class="glyphicon glyphicon-ok"></i></button>
                       </td>
                     </tr>
                   )
