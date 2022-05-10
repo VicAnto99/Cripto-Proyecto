@@ -28,42 +28,45 @@ function Offers() {
     
   return (
     <div className='offers'>
-
-        <div className='container mt-5'>
-            <div className='offers_container_title'>
-                <h2>Offers</h2>
-            </div>
-            <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">User</th>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-                <th scope="col">Positions</th>
-                <th scope="col">Place</th>
-                <th scope="col">Offer</th>
-              </tr>
-            </thead>
-            <tbody>
-                {/* Fetch all the offers into the table */}
-                {list.map((offer, index) => {
-                  return (
-                    <tr key={index}>
-                      <th>{offer._id.substring(0,9)}</th>
-                      <td>{offer.offers_date}</td>
-                      <td>{offer.offers_from}{'-'}{offer.offers_to}</td>
-                      <td>{offer.offers_positions}</td>
-                      <td>{offer.offers_comments}</td>
-                      <td>
-                        <button type="button" class="btn btn-info btn-circle btn-lg" onClick={routeChange}><i class="glyphicon glyphicon-ok"></i></button>
-                      </td>
-                    </tr>
-                  )
-                })}
-            </tbody>
-          </table>  
+      <div className='container mt-5'>
+        <div className='offers_container_title'>
+          <h2>Offers</h2>
         </div>
-    </div>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Positions</th>
+              <th scope="col">Place</th>
+              <th scope="col">Offer</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* Fetch all the offers into the table */}
+            {list.map((offer, index) => {
+              return (
+                <tr key={index}>
+                  <th>{offer._id.substring(0,9)}</th>
+                  <td>{offer.offers_date}</td>
+                  <td>{offer.offers_from}{'-'}{offer.offers_to}</td>
+                  <td>{offer.offers_positions}</td>
+                  <td>{offer.offers_comments}</td>
+                  <td>
+                    <button type="button" class="btn btn-info btn-circle btn-lg" onClick={routeChange}><i class="glyphicon glyphicon-ok"></i></button>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+        <div className='offers_container_title'>
+          <h2>Rides</h2>
+          <h4 className='text-center'>No rides yet.</h4>
+        </div> 
+      </div>
+  </div> 
 )}
 
 export default Offers

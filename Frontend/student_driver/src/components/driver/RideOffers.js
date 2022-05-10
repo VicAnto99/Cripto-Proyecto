@@ -98,8 +98,15 @@ function RideOffers() {
                     </div>
                     
                 </div>
+                <div className="row text-center">
+                    <div className="col-sm-15">
+                    <button type="submit" className="btn btn-success button" onClick={handleSubmit}>Publish</button>
+                    </div>
+
+                    
+                </div>
+
             </div>
-            <button type="submit" className="btn btn-success" onClick={handleSubmit}>Offer</button>
     </div>
    )
  }
