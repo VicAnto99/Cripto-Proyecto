@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
 function NewBid(){
+
+    let navigate = useNavigate();
+
+    const routeChange = () =>{ 
+        navigate(-1);
+    }
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        routeChange();  
+    };
 
     return(
         <div className='container text-center'>
@@ -60,7 +73,7 @@ function NewBid(){
                                     <input type="number" className="form-control" id="floatingCost" min="0.00" max="10000.00" step="0.01" placeholder="Victor Godinez"/>
                                     <label for="floatingCost">Amount</label>
                                     <br></br>
-                                    <button type="button" className="btn btn-success">Bid</button>
+                                    <button type="button" className="btn btn-success" onClick={handleSubmit}>Bid</button>
                                 </div>   
                             </div>
                         </div>            

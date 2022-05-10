@@ -12,8 +12,7 @@ function Navbar() {
         </NavLink>
         <Bars/>
           <NavMenu>
-            <NavLink to='/rideOffers' activeStyle>Rideshare Offers</NavLink>
-            <NavLink to='/newBid' activeStyle>New Bid</NavLink>
+            <NavLink to='/rideOffers' activeStyle>New Publication</NavLink>
             <NavLink to='/contact' activeStyle>Contact Us</NavLink>
           </NavMenu>
           <Logout/>
