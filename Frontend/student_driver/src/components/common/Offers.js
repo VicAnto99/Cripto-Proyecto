@@ -1,10 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import './Offers.css';
-import { useNavigate } from "react-router-dom";
-import App from '../../App.js';
+import Web3 from 'web3';
 
 
 function Offers() {
+
+  const [ walletAccount, setWalletAccount ] = useState('')
+  const [ currentChain, setCurrentChain ] = useState('')
+  const riderWallet = '0x39297d2fcbe54cbBA9689D83F1862173690b3Bd2';
+  const driverWallet = '0x9AEC4Adb7c7d4E6B281101B9465f936Ad2EcaD84';
+
+  // Initialize the application and MetaMask Event Handlers
+  useEffect(() => {
+
+    // Setup Listen Handlers on MetaMask change events
+    if(typeof window.ethereum !== 'undefined') {
+        // Add Listener when accounts switch
+        window.ethereum.on('accountsChanged', (accounts) => {
+
+          console.log('Account changed: ', accounts[0])
+          setWalletAccount(accounts[0])
+
+        })
+        
+        // Do something here when Chain changes
+        window.ethereum.on('chainChanged', (chaindId) => {
+
+          console.log('Chain ID changed: ', chaindId)
+          setCurrentChain(chaindId)
+
+        })
+
+    } else {
+
+        alert('Please install MetaMask to use this service!')
+
+    }
+  }, []);
+
+  // sender: 0x9AEC4Adb7c7d4E6B281101B9465f936Ad2EcaD84
+  // receiver: 0x39297d2fcbe54cbBA9689D83F1862173690b3Bd2
+
+  const handleSendTransaction = async (sender, receiver, amount) => {
+    const gasPrice = '0x5208' // 21000 Gas Price
+    const amountHex = (amount * Math.pow(10,18)).toString(16)
+    
+    const tx = {
+      from: sender,
+      to: receiver,
+      value: amountHex,
+      gas: gasPrice,
+    }
+
+    await window.ethereum.request({ method: 'eth_sendTransaction', params: [ tx ]})
+
+  }
     
   return (
     <div className='offers'>
@@ -24,14 +74,14 @@ function Offers() {
               <th scope="col"> End Place</th>
               <th scope="col">Duration</th>
               <th scope="col">Cost</th>
-              <th scope="col">Offer - 100</th>
-              <th scope="col">Offer - 200</th>
-              <th scope="col">Offer - 300</th>
+              <th scope="col">Offer - 5</th>
+              <th scope="col">Offer - 10</th>
+              <th scope="col">Offer - 15</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">user_1</th>
+              <th scope="row">{driverWallet.substring(0,12)}...</th>
               <td>Monday 25 May</td>
               <td>19:00</td>
               <td>20:00</td>
@@ -41,17 +91,17 @@ function Offers() {
               <td>1 hour</td>
               <td>10ETH</td>             
               <td>
-                  <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+                  <button type="button" class="btn btn-info btn-circle btn-lg" onClick={() => handleSendTransaction(driverWallet, riderWallet, 5)}><i class="glyphicon glyphicon-ok"></i></button>
               </td>
               <td>
-                  <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+                  <button type="button" class="btn btn-info btn-circle btn-lg" onClick={() => handleSendTransaction(driverWallet, riderWallet, 10)}><i class="glyphicon glyphicon-ok"></i></button>
               </td>
               <td>
-                  <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+                  <button type="button" class="btn btn-info btn-circle btn-lg" onClick={() => handleSendTransaction(driverWallet, riderWallet, 15)}><i class="glyphicon glyphicon-ok"></i></button>
               </td>
             </tr>
             <tr>
-              <th scope="row">user_1</th>
+              <th scope="row">{driverWallet.substring(0,12)}...</th>
               <td>Monday 25 May</td>
               <td>13:00</td>
               <td>14:30</td>
@@ -61,13 +111,33 @@ function Offers() {
               <td>2 hour</td>
               <td>12ETH</td>             
               <td>
-                  <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+                  <button type="button" class="btn btn-info btn-circle btn-lg" onClick={() => handleSendTransaction(driverWallet, riderWallet, 5)}><i class="glyphicon glyphicon-ok"></i></button>
               </td>
               <td>
-                  <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+                  <button type="button" class="btn btn-info btn-circle btn-lg" onClick={() => handleSendTransaction(driverWallet, riderWallet, 10)}><i class="glyphicon glyphicon-ok"></i></button>
               </td>
               <td>
-                  <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+                  <button type="button" class="btn btn-info btn-circle btn-lg" onClick={() => handleSendTransaction(driverWallet, riderWallet, 15)}><i class="glyphicon glyphicon-ok"></i></button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">{driverWallet.substring(0,12)}...</th>
+              <td>Monday 25 May</td>
+              <td>09:00</td>
+              <td>09:30</td>
+              <td>4</td>
+              <td>Coapa</td>
+              <td>Insurgentes</td>
+              <td>30 minutes</td>
+              <td>8ETH</td>             
+              <td>
+                  <button type="button" class="btn btn-info btn-circle btn-lg" onClick={() => handleSendTransaction(driverWallet, riderWallet, 5)}><i class="glyphicon glyphicon-ok"></i></button>
+              </td>
+              <td>
+                  <button type="button" class="btn btn-info btn-circle btn-lg" onClick={() => handleSendTransaction(driverWallet, riderWallet, 10)}><i class="glyphicon glyphicon-ok"></i></button>
+              </td>
+              <td>
+                  <button type="button" class="btn btn-info btn-circle btn-lg" onClick={() => handleSendTransaction(driverWallet, riderWallet, 15)}><i class="glyphicon glyphicon-ok"></i></button>
               </td>
             </tr>
           </tbody>
