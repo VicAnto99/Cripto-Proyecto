@@ -1,7 +1,5 @@
-const Rideshare = artifacts.require("Rideshare");
+const Migrations = artifacts.require("Migrations");
 
-module.exports = function (deployer) {
-  deployer.deploy(Rideshare);
+module.exports = function(deployer) {
+  deployer.deploy(Migrations);
 };
-
-

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Offers.css';
 import { useNavigate } from "react-router-dom";
-
+import App from '../../App.js';
 
 
 function Offers() {
