@@ -10,12 +10,16 @@ function App() {
 
   const { isAuthenticated } = useAuth0();
   const [account, setAccount] = useState(); // state variable to set account.
+  const [balance, setBalance] = useState(); // state variable to set balance.
 
   useEffect(() => {
     async function load(){
       const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545');
       const accounts = await web3.eth.requestAccounts();
+      // Balance of the account.
+      const balance = await web3.eth.getBalance(accounts[0]);
 
+      setBalance(web3.utils.fromWei(balance, 'ether'));
       setAccount(accounts[0]);
     }
     load();
@@ -27,7 +31,8 @@ function App() {
       {isAuthenticated ? (
         <>
           <Home />
-          Your account is: {account}
+          <p className='text-center mt-5'>Your account is: {account}</p>
+          <p className='text-center'>Your balance is: {balance} ETH</p>
         </>  
       ) : (
         <Login />
